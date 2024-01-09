@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import ProductModel from '@/app/db/models/Product.model'
-import { connect, disconnect } from '@/app/db/connection'
+import ProductModel from '@/db/models/Product.model'
+import { connect, disconnect } from '@/db/connection'
 
 export async function PUT (req: NextRequest) {
   await connect()
