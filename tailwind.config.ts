@@ -27,6 +27,7 @@ const config: Config = {
         g: '24px',
         xl: '26px',
         xl2: '28px',
+        xl3: '42px',
         super: '64px'
       },
       fontWeight: {

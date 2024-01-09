@@ -26,7 +26,7 @@ export default function ImageCarousel () {
   }, [])
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className='aspect-video min-w-full'>
       <Image priority src={headerImages[currentImage]} alt='Animal' width={1343} height={720} className='aspect-video w-full'/>
     </div>
 

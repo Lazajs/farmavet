@@ -32,7 +32,7 @@ export default function Footer () {
 
       <div className='flex flex-col items-center md:items-start gap-1 md:gap-4'>
         <FLogo />
-        <Link href={'#'} className='underline cursor-pointer'>Política de privacidad</Link>
+        <Link href={'/privacy'} className='underline cursor-pointer'>Política de privacidad</Link>
         <p>FARMAVET © Copyright 2024</p>
       </div>
     </footer>
