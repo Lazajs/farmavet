@@ -2,6 +2,7 @@ import ImageCarousel from '@/components/ImageCarousel'
 import Image from 'next/image'
 import { dmSerif } from '@/utils/fonts'
 import ContactForm from '@/components/ContactForm'
+import Link from 'next/link'
 
 export default function Home () {
   return (
@@ -10,11 +11,13 @@ export default function Home () {
       <ImageCarousel />
       <div className='block px-[16px] font-medium md:absolute md:left-1/4 md:top-1/3 md:-translate-y-1/3 md:-translate-x-1/4 w-fit md:w-fit max-w-[350px] mx-auto md:m-0 md:max-w-[500px]'>
         <p id='header-txt' className='text-xs text-center text-textBlack md:text-xl md:text-textWhite md:text-left'>Descubre nuestra calidad y compromiso constante como tu aliado en el cuidado de los animales</p>
-        <button className='text-textWhite block mx-auto mt-4 text-base px-[24px] py-[12px] rounded-[40px] shadow-lg bg-primary md:m-0 md:mt-4 w-[200px] h-[50px] md:w-[250px] md:h-60px]'>Ver productos</button>
+        <Link href={'/products'}>
+          <button className='text-textWhite block mx-auto mt-4 text-base px-[24px] py-[12px] rounded-[40px] shadow-common bg-primary md:m-0 md:mt-4 w-[200px] h-[50px] md:w-[250px] md:h-60px]'>Ver productos</button>
+        </Link>
       </div>
     </header>
 
-    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px]'>
+    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
       <h2 className={`${dmSerif.className} text-xl2 font-normal text-center mb-[30px] md:text-super md:text-left md:mb-[100px]`}>Nuestros servicios</h2>
       <div className='text-xs w-fit grid mx-auto grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16'>
         <div className='text-center md:text-left max-w-[360px] md:max-w-[600px] flex flex-col md:flex-row md: justify-between gap-4'>
@@ -51,7 +54,7 @@ export default function Home () {
       </div>
     </section>
 
-    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px]'>
+    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
       <h2 className={`${dmSerif.className} text-xl2 font-normal text-center mb-[30px] md:text-super md:text-left md:mb-[100px]`}>Contáctenos</h2>
       <div className='mx-auto block lg:flex'>
         <ContactForm />

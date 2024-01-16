@@ -20,6 +20,7 @@ const config: Config = {
         textWhite: '#FFFFFF'
       },
       fontSize: {
+        tiny: '12px',
         small: '14.5px',
         xs: '16px',
         sm: '18px',
@@ -42,6 +43,9 @@ const config: Config = {
         md: '768px', // Custom medium screen
         lg: '1024px', // Custom large screen
         xl: '1200px' // Custom extra-large screen
+      },
+      boxShadow: {
+        common: '0px 4px 4px 0px rgba(0, 0, 0, 0.25);'
       }
     }
   },

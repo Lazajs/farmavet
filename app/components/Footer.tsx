@@ -8,7 +8,7 @@ const { LocationFooter, PhoneFooter, FLogo, InstagramFooter, LetterFooter } = Ic
 export default function Footer () {
   return (
     <footer className='bg-primary w-full h-[300px] md:h-[220px] mt-4 overflow-hidden flex flex-col items-center text-textWhite text-small justify-between md:justify-around p-5 md:flex-row'>
-      <div className='flex flex-col items-center md:items-start gap-1 md:gap-4'>
+      <div className='flex flex-col items-center md:items-start gap-1 md:gap-4 '>
         <p className='flex gap-2 font-bold'>
           <LocationFooter />
           Córdoba, Argentina
