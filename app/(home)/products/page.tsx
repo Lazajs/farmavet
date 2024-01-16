@@ -1,13 +1,16 @@
 import ProductModel from '@/db/models/Product.model'
 import { connect, disconnect } from '@/db/connection'
 import { IProduct } from '@/interfaces/Product.interface'
-import Product from '@/components/Product'
 import { dmSerif } from '@/utils/fonts'
+import dynamic from 'next/dynamic'
+
+const Product = dynamic(() => import('@/components/Product'), { ssr: false }) // Avoid prerender
 
 export default async function Page () {
   await connect()
   const products = await ProductModel.find({}).limit(20)
   await disconnect()
+
   // const products = [
   //   {
   //     _id: 'asdf',
@@ -35,7 +38,7 @@ export default async function Page () {
       <section className='flex flex-col md:flex-row md:flex-wrap md:gap-[22px] gap-2 w-full items-center'>
         {
           products.map((product: IProduct) => {
-            return <Product _id={product._id} key={product.CODIGO} CODIGO={product.CODIGO} ARTICULO={product.ARTICULO} PRECIO={product.PRECIO} PROVEEDOR={product.PROVEEDOR} TIPO={product.TIPO}/>
+            return <Product _id={product._id} key={product.CODIGO} CODIGO={product.CODIGO} IMAGE={product.IMAGE} ARTICULO={product.ARTICULO} PROVEEDOR={product.PROVEEDOR} TIPO={product.TIPO} />
           })
         }
       </section>

@@ -22,7 +22,7 @@ export default function Modal () {
         const jsonData = XLSX.utils.sheet_to_json(sheet, {
           blankrows: false,
           defval: 'N/A',
-          header: ['TIPO', 'PROVEEDOR', 'CODIGO', 'ARTICULO', 'N/A', 'PRECIO'],
+          header: ['TIPO', 'PROVEEDOR', 'CODIGO', 'ARTICULO'],
           range
         })
 
