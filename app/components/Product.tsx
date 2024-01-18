@@ -5,7 +5,7 @@ import { IProduct } from '@/interfaces/Product.interface'
 import { useState } from 'react'
 import Image from 'next/image'
 
-export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE }: IProduct) {
+export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE }: Omit<IProduct, '_id'>) {
   const [isInCart, setIsInCart] = useState(() => {
     const cart = localStorage.getItem('cart')
 
