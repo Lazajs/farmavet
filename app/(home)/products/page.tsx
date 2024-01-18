@@ -3,7 +3,7 @@ import { connect, disconnect } from '@/db/connection'
 import { IProduct } from '@/interfaces/Product.interface'
 import Client from './page.client'
 
-export default async function Page ({ searchParams }: {searchParams: string}) {
+export default async function Page () {
   const connection = await connect()
   let products: IProduct[] = []
   if (connection) {
