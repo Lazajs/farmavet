@@ -1,18 +1,39 @@
 import mongoose from 'mongoose'
 
-export async function disconnect () {
-  return await mongoose.disconnect()
+const MONGODB_URI = process.env.NEXT_MONGO_URI
+
+if (!MONGODB_URI) throw new Error('MONGODB_URI not defined')
+
+// @ts-ignore
+let cached = global.mongoose
+
+if (!cached) {
+  // @ts-ignore
+  cached = global.mongoose = { conn: null, promise: null }
 }
 
-export async function connect () {
-  if (!process.env.NEXT_MONGO_URI) {
-    return new Error('Mongoose URI not found')
+async function dbConnect () {
+  if (cached.conn) {
+    return cached.conn
   }
-  const connection = await mongoose.connect(process.env.NEXT_MONGO_URI!)
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false
+    }
+    cached.promise = mongoose
+      .connect(MONGODB_URI as string, opts)
+      .then((mongoose) => {
+        return mongoose
+      })
+  }
+  try {
+    cached.conn = await cached.promise
+  } catch (e) {
+    cached.promise = null
+    throw e
+  }
 
-  if (connection.connection.readyState === 1) {
-    console.log('connected to mongodb')
-    return true
-  }
-  return false
+  return cached.conn
 }
+
+export default dbConnect

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import ProductModel from '@/db/models/Product.model'
 import TypeModel from '@/db/models/Type.model'
 import ProviderModel from '@/db/models/Provider.model'
-import { connect, disconnect } from '@/db/connection'
+import connect from '@/db/connection'
 import { IProduct } from '@/interfaces/Product.interface'
 
 export async function PUT (req: NextRequest) {
@@ -16,8 +16,6 @@ export async function PUT (req: NextRequest) {
   await ProductModel.insertMany(data)
   await TypeModel.insertMany(types)
   await ProviderModel.insertMany(providers)
-
-  await disconnect()
 
   return NextResponse.json({ status: 'ok' })
 }

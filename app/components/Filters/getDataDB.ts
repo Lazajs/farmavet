@@ -1,11 +1,11 @@
 /* eslint-disable no-prototype-builtins */
 
-import { connect } from '@/db/connection'
+import connect from '@/db/connection'
 import TypeModel from '@/db/models/Type.model'
 import ProviderModel from '@/db/models/Provider.model'
 
 export default async function getDataDB () {
-  const connection = await connect()
+  await connect()
   let plainTypes: Record<string, string[]> = {}
   let plainProviders: Record<string, string[]> = {}
 
@@ -25,12 +25,11 @@ export default async function getDataDB () {
 
     return result
   }
-  if (connection) {
-    const types = await TypeModel.find({}).select({ __v: 0, _id: 0 })
-    plainTypes = groupByWord(types.map(type => type.toObject()))
-    const providers = await ProviderModel.find({}).select({ __v: 0, _id: 0 })
-    plainProviders = groupByWord(providers.map(provider => provider.toObject()))
-  }
+
+  const types = await TypeModel.find({}).select({ __v: 0, _id: 0 })
+  plainTypes = groupByWord(types.map(type => type.toObject()))
+  const providers = await ProviderModel.find({}).select({ __v: 0, _id: 0 })
+  plainProviders = groupByWord(providers.map(provider => provider.toObject()))
 
   return [plainTypes, plainProviders]
 }

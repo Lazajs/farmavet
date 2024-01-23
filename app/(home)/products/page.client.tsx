@@ -20,12 +20,13 @@ export default function Page ({ products }: {products: IProduct[]}) {
       const data = await response.json()
       setCurrentProducts((prod) => prod.concat(data))
     }
-    updateState()
+
+    if (isIntersecting) updateState()
   }, [isIntersecting])
 
   return (
     <main className="max-w-[1440px] m-auto mt-10 p-4 lg:p-[120px] pt-0 lg:pt-0">
-      <h1 className={`${dmSerif.className} text-xl2 font-normal text-textBlack mb-10 text-center md:text-left md:text-xl3`}>Productos</h1>
+      <h1 className={`${dmSerif.className} text-xl2 font-normal text-textBlack mb-10 md:mt-20 text-center md:text-left md:text-xl3`}>Productos</h1>
       <section className='flex flex-col md:flex-row md:flex-wrap relative min-h-screen md:gap-[22px] gap-2 w-full items-center'>
         {
           currentProducts.map((product: IProduct) => {

@@ -13,7 +13,6 @@ const ImageWithFallbacks = (props: Props) => {
   const [fallbackIndex, setFallbackIndex] = useState(0)
 
   const onError = () => {
-    console.log('errored', fallbackIndex)
     if (fallbackIndex >= props.fallbacks.length) {
       return
     }
