@@ -5,4 +5,4 @@ const providerSchema = new mongoose.Schema<{name: IProvider}>({
   name: { type: String, required: true }
 })
 
-export default mongoose.models.Provider || mongoose.model<IProvider>('Provider', providerSchema)
+export default mongoose.models?.Provider || mongoose.model<IProvider>('Provider', providerSchema)

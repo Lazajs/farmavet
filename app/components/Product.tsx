@@ -1,11 +1,11 @@
 'use client'
-// eslint-disable-next-line @next/next/no-img-element
 
+import ImageWithFallbacks from './ImageWithFallback'
 import { IProduct } from '@/interfaces/Product.interface'
 import { useState } from 'react'
 import Image from 'next/image'
 
-export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE }: Omit<IProduct, '_id'>) {
+export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE, CODIGO }: Omit<IProduct, '_id'>) {
   const [isInCart, setIsInCart] = useState(() => {
     const cart = localStorage.getItem('cart')
 
@@ -16,6 +16,12 @@ export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE }: Omit<IPro
       return false
     }
   })
+
+  const IMAGE_FALLBACKS = [
+    `https://esperanzadistri.com.ar/instrumental/uploads/${CODIGO}.jpg`,
+    `https://esperanzadistri.com.ar/balanceados/uploads/${CODIGO}.jpg`,
+    '/placeholder-article.svg'
+  ]
 
   const addToCart = () => {
     const dataToAdd = {
@@ -41,7 +47,7 @@ export default function Product ({ ARTICULO, PROVEEDOR, TIPO, IMAGE }: Omit<IPro
   return (
     <article className='max-w-[500px] min-h-[140px] w-[350px] flex md:flex-col md:border md:rounded-xl md:w-[280px] md:h-[480px] gap-4 border-b p-6 py-0 relative md:items-center text-textBlack'>
       <figure className='max-w-[140px] self-center md:max-w-full md:h-[270px] md:grid md:place-content-center md:border-[creamy]'>
-        <img className='object-contain object-center' src={IMAGE || '/placeholder-article.svg'} width={200} height={200} alt="Farmavet placeholder" />
+        <ImageWithFallbacks styles={'h-auto w-auto max-h-[200px]'} src={`https://esperanzadistri.com.ar/medicamentos/uploads/${CODIGO}.jpg`} fallbacks={IMAGE_FALLBACKS} />
       </figure>
       <div className='w-full max-w-[180px] md:max-w-full'>
         <small className='text-tiny font-medium mb-[10px]'>{PROVEEDOR}</small>

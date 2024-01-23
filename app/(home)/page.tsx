@@ -17,7 +17,7 @@ export default function Home () {
       </div>
     </header>
 
-    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
+    <section id='services' className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
       <h2 className={`${dmSerif.className} text-xl2 font-normal text-center mb-[30px] md:text-super md:text-left md:mb-[100px]`}>Nuestros servicios</h2>
       <div className='text-xs w-fit grid mx-auto grid-cols-1 lg:grid-cols-2 gap-4 md:gap-16'>
         <div className='text-center md:text-left max-w-[360px] md:max-w-[600px] flex flex-col md:flex-row md: justify-between gap-4'>
@@ -54,7 +54,7 @@ export default function Home () {
       </div>
     </section>
 
-    <section className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
+    <section id='contact' className='text-textBlack mt-[60px] px-[16px] md:px-[120px] max-w-[1440px] m-auto'>
       <h2 className={`${dmSerif.className} text-xl2 font-normal text-center mb-[30px] md:text-super md:text-left md:mb-[100px]`}>Contáctenos</h2>
       <div className='mx-auto block lg:flex'>
         <ContactForm />

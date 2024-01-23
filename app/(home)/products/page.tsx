@@ -7,7 +7,7 @@ export default async function Page () {
   const connection = await connect()
   let products: IProduct[] = []
   if (connection) {
-    products = await ProductModel.find({}).limit(100).select({ __v: 0, _id: 0 })
+    products = await ProductModel.find({}).limit(50).select({ __v: 0, _id: 0 })
   }
   await disconnect()
 

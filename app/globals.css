@@ -11,3 +11,17 @@
 #masonry {
   grid-template-rows: masonry;
 }
+
+* {
+  scroll-behavior: smooth;
+}
+
+#box-filter.show {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  #box-filter.show {
+    display: block;
+  }
+}
