@@ -36,8 +36,8 @@ export default function Navbar ({ Mobile, Desktop } : Props) {
           }
           <span className='hidden md:flex justify-center w-fit mr-2 lg:mr-0 lg:ml-auto'>
             <Link href='/products' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Productos</Link>
-            <a href='#services' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Servicios</a>
-            <a href='#contact' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Contacto</a>
+            <Link href='/#services' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Servicios</Link>
+            <Link href='/#contact' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Contacto</Link>
           </span>
           <Cart className='ml-auto lg:ml-20 mr shrink-0'/>
         </nav>

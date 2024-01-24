@@ -1,11 +1,32 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Icons } from '../Icons'
+import { useDebounce } from '@/hooks/useDebounce'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 const { Lupa } = Icons
 
 export default function Search ({ children } : {children: React.ReactNode}) {
-  const [value, setValue] = useState('')
+  const searchParams = useSearchParams()
+  const [value, setValue] = useState(() => {
+    const params = new URLSearchParams(searchParams)
+    return params.get('text') || ''
+  })
+  const debouncedValue = useDebounce<string>(value, 500)
+  const router = useRouter()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    if (pathname === '/' && !debouncedValue) return
+    const params = new URLSearchParams(searchParams)
+    if (debouncedValue) {
+      params.set('text', debouncedValue)
+    } else {
+      params.delete('text')
+    }
+
+    router.push(`/products?${params.toString()}`)
+  }, [debouncedValue])
 
   return (
     <>

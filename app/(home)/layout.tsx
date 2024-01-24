@@ -3,8 +3,8 @@ import '../globals.css'
 import Navbar from '../components/Navbar'
 import { montserrat } from '../utils/fonts'
 import Footer from '@/components/Footer'
-import MobileSearchServer from '@/components/Search/MobileSearch'
 import SearchServer from '@/components/Search/Search'
+import Filters from '@/components/Filters'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,7 +19,7 @@ export default async function RootLayout ({
   return (
     <html lang="en">
       <body className={montserrat.className + ' antialiased'}>
-        <Navbar Mobile={<MobileSearchServer />} Desktop={<SearchServer />} />
+        <Navbar Mobile={<Filters />} Desktop={<SearchServer />} />
           {children}
         <Footer />
       </body>

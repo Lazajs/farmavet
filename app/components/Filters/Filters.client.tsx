@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 'use client'
 import { useState, useRef } from 'react'
+import MobileSearch from '@/components/Search/MobileSearch'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 
 enum Options {
   TYPES,
@@ -19,6 +21,9 @@ export default function ClientFilters ({ types, providers }: {types: Record<stri
   const [option, setOption] = useState<Options>(Options.TYPES)
   const fromSelection = option === Options.TYPES ? types : providers
   const filterBox = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const router = useRouter()
 
   const handleClick = (option: Options) => {
     setOption(option)
@@ -34,27 +39,42 @@ export default function ClientFilters ({ types, providers }: {types: Record<stri
     }
   }
 
-  return (
-    <div className='w-full md:bg-primary bg-white absolute left-0 top-[80px] shadow-common z-20'>
-      <span className='bg-softWhite md:max-w-[1440px] md:bg-primary border md:w-full md:rounded-none md:h-[44px] md:block md:border-none md:text-white md:text-base w-[360px] h-[60px] m-auto md:pl-[120px] flex rounded-3xl text-sm font-bold'>
-        <button className={`${option === Options.PROVIDERS && 'bg-white md:bg-primary'} md:mr-[60px] rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.PROVIDERS)} onClick={() => handleClick(Options.PROVIDERS)}>proveedores <ArrowDown /></button>
-        <button className={`${option === Options.TYPES && 'bg-white md:bg-primary'} rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.TYPES)} onClick={() => handleClick(Options.TYPES)}>tipo <ArrowDown /></button>
-      </span>
+  const handleSelection = (value: string) => {
+    const params = new URLSearchParams(searchParams)
+    const keyToSearch = option === Options.TYPES ? 'type' : 'provider'
 
-      <div id='box-filter' ref={filterBox} onMouseLeave={handleMouseLeave} className='text-[#3A3A3A] md:bg-white md:py-[30px] md:px-[30px] lg:px-[120px] xl:px-[180px] md:m-auto text-sm md:flex-wrap md:gap-[25px] md:text-base font-bold mt-[20px] md:hidden'>
-        {
-          Object.keys(fromSelection).map((key) => (
-            <div key={key} className='md:bg-white gap-x-[2px] gap-y-[4px] md:w-[180px]'>
-              <h3 className='h-[57px] md:p-0 md:h-fit bg-softWhite md:bg-white p-[16px]'>{key.toUpperCase()}</h3>
-              <ul className='p-[18px] md:p-0 md:bg-white'>
-                {fromSelection[key].map((value) => (
-                  <li className='md:font-medium' key={value}>{value}</li>
-                ))}
-              </ul>
-            </div>
-          ))
-        }
+    params.set(keyToSearch, value)
+    router.push(`/products?${params.toString()}`)
+  }
+
+  return (
+    <>
+        {pathname === '/'
+          ? <div className='md:hidden w-full absolute left-0 top-[80px] p-4 pt-[40px] block bg-white h-[200px]'>
+          <MobileSearch />
+        </div>
+          : ''}
+      <div className='w-full md:bg-primary bg-white absolute left-0 md:top-[80px] top-[270px] shadow-common z-40'>
+        <span className='bg-softWhite md:max-w-[1440px] md:bg-primary border md:w-full md:rounded-none md:h-[44px] md:block md:border-none md:text-white md:text-base w-[360px] h-[60px] m-auto md:pl-[120px] flex rounded-3xl text-sm font-bold'>
+          <button className={`${option === Options.PROVIDERS && 'bg-white md:bg-primary'} md:mr-[60px] rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.PROVIDERS)} onClick={() => handleClick(Options.PROVIDERS)}>proveedores <ArrowDown /></button>
+          <button className={`${option === Options.TYPES && 'bg-white md:bg-primary'} rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.TYPES)} onClick={() => handleClick(Options.TYPES)}>tipo <ArrowDown /></button>
+        </span>
+
+        <div id='box-filter' ref={filterBox} onMouseLeave={handleMouseLeave} className='text-[#3A3A3A] md:bg-white md:py-[30px] md:px-[30px] lg:px-[120px] xl:px-[180px] md:m-auto text-sm md:flex-wrap md:gap-[25px] md:text-base font-bold mt-[20px] md:hidden'>
+          {
+            Object.keys(fromSelection).map((key) => (
+              <div key={key} className='md:bg-white gap-x-[2px] gap-y-[4px] md:w-[180px]'>
+                <h3 className='h-[57px] md:p-0 md:h-fit bg-softWhite md:bg-white p-[16px]'>{key.toUpperCase()}</h3>
+                <ul className='p-[18px] md:p-0 md:bg-white'>
+                  {fromSelection[key].map((value) => (
+                    <li className='md:font-medium cursor-pointer' onClick={() => handleSelection(value)} key={value}>{value}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    </>
   )
 }
