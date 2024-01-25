@@ -21,9 +21,9 @@ export default function Navbar ({ Mobile, Desktop } : Props) {
       <div className='h-fit bg-primary w-full shadow-common'>
         <nav className="h-[80px] w-full flex m-auto items-center max-w-[1440px] p-4">
           {
-            isOpen
+            allowedSearchPaths.includes(pathname) && (isOpen
               ? <CloseBurger className='md:hidden min-w-[40px]' onClick={() => setIsOpen(!isOpen)}/>
-              : <Burger className='md:hidden min-w-[40px]' onClick={() => setIsOpen(!isOpen)}/>
+              : <Burger className='md:hidden min-w-[40px]' onClick={() => setIsOpen(!isOpen)}/>)
           }
           <Link href={'/'}>
             <LogoWhite className='scale-[50%] sm:scale-[60%] shrink-0' />
@@ -39,7 +39,9 @@ export default function Navbar ({ Mobile, Desktop } : Props) {
             <Link href='/#services' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Servicios</Link>
             <Link href='/#contact' className='text-white font-medium w-fit text-xs lg:text-base ml-[30px]'>Contacto</Link>
           </span>
-          <Cart className='ml-auto lg:ml-20 mr shrink-0'/>
+          <Link href={'/cart'} className='ml-auto lg:ml-20 mr shrink-0'>
+            <Cart />
+          </Link>
         </nav>
       </div>
     </>

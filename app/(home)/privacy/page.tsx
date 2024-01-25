@@ -2,7 +2,7 @@ import { dmSerif } from '@/utils/fonts'
 
 export default function Page () {
   return (
-    <main className='p-[16px] md:px-[60px] lg:px-[120px] w-full max-w-[1440px] m-auto'>
+    <main className='p-[16px] md:px-[60px] lg:px-[120px] w-full max-w-[1440px] mb-20 m-auto'>
       <h1 className={`${dmSerif.className} text-xl2 font-normal md:text-xl3 text-textBlack`}>Política de Privacidad</h1>
       <section id='masonry' className='w-full flex flex-wrap justify-center gap-10 lg:gap-x-20 mt-10'>
         <div className='max-w-[549px]'>

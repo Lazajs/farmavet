@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 export default function Home () {
   return (
-    <main>
+    <main className='mb-20'>
     <header className='md:relative'>
       <ImageCarousel />
       <div className='block px-[16px] font-medium md:absolute md:left-1/4 md:top-1/3 md:-translate-y-1/3 md:-translate-x-1/4 w-fit md:w-fit max-w-[350px] mx-auto md:m-0 md:max-w-[500px]'>

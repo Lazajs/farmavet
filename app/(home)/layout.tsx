@@ -5,6 +5,9 @@ import { montserrat } from '../utils/fonts'
 import Footer from '@/components/Footer'
 import SearchServer from '@/components/Search/Search'
 import Filters from '@/components/Filters'
+import dynamic from 'next/dynamic'
+
+const CartProvider = dynamic(() => import('./cart/components/CartProvider'), { ssr: false })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,7 +23,9 @@ export default async function RootLayout ({
     <html lang="en">
       <body className={montserrat.className + ' antialiased'}>
         <Navbar Mobile={<Filters />} Desktop={<SearchServer />} />
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
         <Footer />
       </body>
     </html>

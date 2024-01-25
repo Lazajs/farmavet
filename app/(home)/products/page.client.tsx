@@ -25,7 +25,6 @@ export default function Page ({ products, prevParams }: Props) {
   const queryParams = useMemo(() => {
     const params = new URLSearchParams(prevParams).toString()
     const query = params ? `&${params}` : ''
-
     return query
   }, [prevParams])
 
@@ -58,19 +57,19 @@ export default function Page ({ products, prevParams }: Props) {
   const clearFilters = () => {
     router.push('/products')
   }
-
   return (
     <main className="max-w-[1440px] m-auto mt-10 p-4 lg:p-[120px] pt-0 lg:pt-0">
       <h1 className={`${dmSerif.className} text-xl2 font-normal text-textBlack mb-10 md:mt-20 hidden md:block text-center md:text-left md:text-xl3`}>Productos</h1>
+
       {queryParams && <button className='rounded-xl bg-primary text-base text-white font-bold p-2 mb-10' onClick={clearFilters}> ❌ Quitar filtros</button>}
 
       <MobileSearch />
       <section className={`flex flex-col md:flex-row md:flex-wrap relative ${!isAll && 'min-h-screen'} md:gap-[22px] gap-2 w-full items-center`}>
-        {
-          currentProducts.map((product: IProduct) => {
-            return <Product key={product.CODIGO} CODIGO={product.CODIGO} IMAGE={product.IMAGE} ARTICULO={product.ARTICULO} PROVEEDOR={product.PROVEEDOR} TIPO={product.TIPO} />
-          })
-        }
+          {
+            currentProducts.map((product: IProduct) => {
+              return <Product key={product.CODIGO} CODIGO={product.CODIGO} IMAGE={product.IMAGE} ARTICULO={product.ARTICULO} PROVEEDOR={product.PROVEEDOR} TIPO={product.TIPO} />
+            })
+          }
 
         {
           !isAll &&
