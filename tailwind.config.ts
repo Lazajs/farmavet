@@ -42,7 +42,8 @@ const config: Config = {
         sm: '480px', // Custom small screen
         md: '768px', // Custom medium screen
         lg: '1024px', // Custom large screen
-        xl: '1200px' // Custom extra-large screen
+        xl: '1200px', // Custom extra-large screen
+        xl2: '1400px'
       },
       boxShadow: {
         common: '0px 4px 4px 0px rgba(0, 0, 0, 0.25);'

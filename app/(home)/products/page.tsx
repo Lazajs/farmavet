@@ -1,5 +1,6 @@
 import Client from './page.client'
 import getProductsDB from './getProductsDB'
+import NotificationProvider from '@/components/Notification/NotificationProvider'
 
 interface Props {
   searchParams: {
@@ -13,6 +14,8 @@ export default async function Page ({ searchParams }: Props) {
   const products = await getProductsDB(searchParams)
 
   return (
-    <Client products={products} prevParams={searchParams} />
+    <NotificationProvider>
+      <Client products={products} prevParams={searchParams} />
+    </NotificationProvider>
   )
 }
