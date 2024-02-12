@@ -58,7 +58,7 @@ export default function Page ({ products, prevParams }: Props) {
     router.push('/products')
   }
   return (
-    <main className="max-w-[1440px] m-auto mt-10 p-4 lg:p-[120px] pt-0 lg:pt-0">
+    <main className="max-w-[1440px] m-auto mt-10 p-4 lg:p-[120px] min-h-screen pt-0 lg:pt-0">
       <h1 className={`${dmSerif.className} text-xl2 font-normal text-textBlack mb-10 md:mt-20 hidden md:block text-center md:text-left md:text-xl3`}>Productos</h1>
 
       {queryParams && <button className='rounded-xl bg-primary text-base text-white font-bold p-2 mb-10' onClick={clearFilters}> ❌ Quitar filtros</button>}

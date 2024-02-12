@@ -42,7 +42,11 @@ export default function Order () {
           <p>Productos</p>
           <p>x {cart?.length}</p>
         </span>
-        <button className='w-[200px] md:w-[350px] block mt-[30px] m-auto py-[15px] px-[30px] text-white bg-primary whitespace-nowrap rounded-[50px] text-sm font-medium'>Solicitar pedido</button>
+          <Link href={'/order'}>
+            <button className='w-[200px] md:w-[350px] shadow-common block mt-[30px] m-auto py-[15px] px-[30px] text-white bg-primary whitespace-nowrap rounded-[50px] text-sm font-medium'>
+              Solicitar pedido
+            </button>
+          </Link>
       </div>}
     </section>
   )
