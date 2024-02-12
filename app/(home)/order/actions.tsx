@@ -50,7 +50,7 @@ async function sendRequestMail (data: any) {
 
     const data = await resend.emails.send({
       from: `Orden nro. ${_id} ${ownDomain}`,
-      to: ['farmavettt@gmail.com'],
+      to: ['gordonsitofreeman@gmail.com'],
       subject: `Nueva orden de ${name} ${lastname}`,
       html
     })

@@ -27,7 +27,7 @@ export async function sendContactMail (state: unknown, formData: FormData) {
 
     const data = await resend.emails.send({
       from: `${fromContactForm.name} ${ownDomain}`,
-      to: ['farmavettt@gmail.com'],
+      to: ['gordonsitofreeman@gmail.com'],
       subject: `Mensaje de ${fromContactForm.email}`,
       html
     })
