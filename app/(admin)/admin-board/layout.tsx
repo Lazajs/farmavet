@@ -18,7 +18,8 @@ export default async function RootLayout ({
   return (
     <html lang="en">
       <body className={montserrat.className + ' antialiased'}>
-        {children}
+        {/* {children} */}
+        <h1>Nothing here.</h1>
       </body>
     </html>
   )

@@ -36,6 +36,7 @@ export function MyTemplate ({ name, lastname, country, province, city, address, 
         <Text style={{ color: '#000000', fontSize: '16px' }}>Código postal: <b>{code}</b> <br /></Text>
         <Text style={{ color: '#000000', fontSize: '16px' }}>Teléfono: <b>{phone}</b> <br /></Text>
         <Text style={{ color: '#000000', fontSize: '16px' }}>Email: <b>{email}</b> <br /></Text>
+        <Text style={{ color: '#000000', fontSize: '16px' }}>{information}</Text>
         <Text style={{ color: '#000000', fontSize: '22px', marginTop: '10px' }}>Productos</ Text>
           {
             productsParsed.map((product: any) => (

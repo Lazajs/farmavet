@@ -10,13 +10,13 @@ export default function YourOrder () {
   return (
       <div className='xl:absolute xl:right-[70px] xl2:right-[120px] xl:top-[140px]'>
         <h2 className={`${dmSerif.className} text-textBlack text-center m-4 text-xl2 font-normal`}>Tu pedido</h2>
-        <div className='bg-softWhite py-[10px] px-[30px] md:min-h-[180px] h-fit block m-auto rounded-[15px] min-w-[390px] w-fit'>
-          <span className='text-textBlack md:text-sm mt-[12px] font-bold text-small flex flex-col justify-between'>
+        <div className='bg-softWhite py-[10px] px-[30px] md:min-h-[180px] h-fit block m-auto rounded-[15px] min-w-[200px] max-w-[400px] xl2:max-w-none w-fit'>
+          <span className='text-textBlack md:text-sm mt-[12px] font-bold text-small flex gap-1 flex-col justify-between'>
             {
               cart?.map(item => (
-                <div key={item.CODIGO} className='flex gap-3 whitespace-nowrap'>
+                <div key={item.CODIGO} className='flex gap-4'>
+                  <p className='whitespace-nowrap'> x {item.quantity}</p>
                   <p>{item.ARTICULO}</p>
-                  <p>x {item.quantity}</p>
                 </div>
               ))
             }
