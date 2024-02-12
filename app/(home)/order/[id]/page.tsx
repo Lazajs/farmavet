@@ -24,18 +24,18 @@ export default async function Page ({ params }: {params: {id: string}}) {
   return (
     <main className='block m-auto max-w-[1440px] min-h-screen p-[16px] lg:px-[120px]'>
       <h2 className='text-center text-primary font-medium text-base md:text-g md:text-left'>Gracias. Tu pedido ha sido recibido.</h2>
-      <div className='bg-softWhite flex w-fit lg:w-full lg:items-center lg:h-[140px] m-auto my-8 gap-[16px] p-[16px] h-[80px] rounded-[15px]'>
-        <span className='border-dashed border-r-[2px] border-r-gray-400 pr-2 lg:pr-4'>
+      <div className='bg-softWhite flex w-fit flex-wrap lg:w-full lg:items-center lg:h-[140px] m-auto my-8 gap-[16px] p-[16px] min-h-fit rounded-[15px]'>
+        <span className='pr-2 lg:pr-4'>
           <p>Número del pedido</p>
           <b>{id}</b>
         </span>
-        <span className='border-none md:border-dashed md:border-r-[2px] md:border-r-gray-400 md:pr-2 lg:pr-4 '>
-          <p>Estado</p>
-          <b>{status}</b>
-        </span>
-        <span className='hidden md:inline-block'>
+        <span className='border-none md:pr-2 lg:pr-4 '>
           <p>Fecha</p>
           <b>{formattedDate}</b>
+        </span>
+        <span className='hidden md:inline-block'>
+          <p>Estado</p>
+          <b>{status}</b>
         </span>
       </div>
       <h1 className={`${dmSerif.className} text-xl2 font-normal text-center md:text-xl3 md:text-left`}>Detalles del pedido</h1>

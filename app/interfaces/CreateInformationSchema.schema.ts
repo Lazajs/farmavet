@@ -7,7 +7,7 @@ export const CreateInformationSchema = z.object({
   province: z.string().min(2),
   city: z.string().min(2),
   address: z.string().min(2),
-  apartment: z.string().min(2).optional(),
+  apartment: z.string().optional(),
   code: z.coerce.number().min(2),
   phone: z.coerce.number().min(4),
   email: z.string().email(),
