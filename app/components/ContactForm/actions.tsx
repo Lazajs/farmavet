@@ -1,6 +1,8 @@
 'use server'
 import { Resend } from 'resend'
 import { CreateContactSchema } from '@/interfaces/CreateContactSchema.schema'
+import { render } from '@react-email/render'
+import MyTemplate from './MailTemplate'
 
 export async function sendContactMail (state: unknown, formData: FormData) {
   const fromContactForm = {
@@ -19,18 +21,15 @@ export async function sendContactMail (state: unknown, formData: FormData) {
   }
 
   try {
+    const html = render(<MyTemplate name={fromContactForm.name as string} email={fromContactForm.email as string} message={fromContactForm.message as string} />, {
+      pretty: true
+    })
+
     const data = await resend.emails.send({
       from: `${fromContactForm.name} ${ownDomain}`,
       to: ['farmavettt@gmail.com'],
       subject: `Mensaje de ${fromContactForm.email}`,
-      html: `
-        <div>
-          <p style='font-size: 16px;'>${fromContactForm.message}</p>
-
-
-          <p style='font-size: 20px;'>Evita responder directamente desde gmail, en cambio: <a style='font-weight: bold;' href='mailto:${fromContactForm.email}'>CLICK AQUÍ</a> para responder a ${fromContactForm.name}</p>
-        </div>
-      `
+      html
     })
 
     if (!data.error) return ['']

@@ -1,7 +1,11 @@
-import Modal from '../components/Modal'
+import dynamic from 'next/dynamic'
+
+const PageClient = dynamic(() => import('@/(admin)/admin-board/page.client'), { ssr: false })
 
 export default function AdminBoard () {
   return (
-    <Modal />
+    <PageClient>
+      <h1>lol</h1>
+    </PageClient>
   )
 }
