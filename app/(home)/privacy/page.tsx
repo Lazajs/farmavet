@@ -1,5 +1,9 @@
 import { dmSerif } from '@/utils/fonts'
 
+export const metadata = {
+  title: 'Políticas de privacidad | Farmavet'
+}
+
 export default function Page () {
   return (
     <main className='p-[16px] md:px-[60px] lg:px-[120px] w-full max-w-[1440px] mb-20 m-auto'>

@@ -26,7 +26,7 @@ export default function CartCard ({ CODIGO, ARTICULO, quantity, TIPO, PROVEEDOR 
         <p className='text-textBlack text-tiny md:text-xs font-medium'>{PROVEEDOR}</p>
       </span>
 
-      <span className='flex absolute md:top-1/2 md:-translate-y-1/2 md:right-[20%] bottom-[15px] text-black text-sm font-bold right-[15px] w-[100px] h-fit gap-[16px]'>
+      <span className='flex absolute md:top-1/2 md:-translate-y-1/2 md:right-[20%] bottom-[15px] bg-white w-fit text-black text-sm font-bold right-[15px] rounded-lg p-1 max-w-[100px] h-fit gap-[16px]'>
         <button onClick={() => updateQuantity(SELF, 'minus')}>
           {quantity === 1 ? <DisabledMinus /> : <Minus />}
         </button>

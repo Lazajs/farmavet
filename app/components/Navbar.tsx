@@ -1,10 +1,12 @@
 'use client'
+/* eslint-disable @next/next/no-img-element */
+
 import Link from 'next/link'
 import { Icons } from '@/components/Icons'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
-const { Cart, CloseBurger, Burger, LogoWhite } = Icons
+const { Cart, CloseBurger, Burger } = Icons
 
 interface Props {
   Mobile: React.ReactNode
@@ -26,7 +28,7 @@ export default function Navbar ({ Mobile, Desktop } : Props) {
               : <Burger className='md:hidden min-w-[40px]' onClick={() => setIsOpen(!isOpen)}/>)
           }
           <Link href={'/'}>
-            <LogoWhite className='scale-[50%] sm:scale-[60%] shrink-0' />
+            <img src="/logofarmavetwhite.svg" alt="logo" className='scale-[60%] w-[200px] h-[100px] sm:scale-[60%] shrink-0' />
           </Link>
           { allowedSearchPaths.includes(pathname) ? Desktop : '' }
           {

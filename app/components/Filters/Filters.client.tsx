@@ -44,6 +44,11 @@ export default function ClientFilters ({ types, providers }: {types: Record<stri
     const keyToSearch = option === Options.TYPES ? 'type' : 'provider'
 
     params.set(keyToSearch, value)
+
+    if (filterBox.current) {
+      filterBox.current.classList.remove('show')
+    }
+
     router.push(`/products?${params.toString()}`)
   }
 

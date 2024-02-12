@@ -2,6 +2,10 @@ import Client from './page.client'
 import getProductsDB from './getProductsDB'
 import NotificationProvider from '@/components/Notification/NotificationProvider'
 
+export const metadata = {
+  title: 'Productos | Farmavet'
+}
+
 interface Props {
   searchParams: {
     text?: string
