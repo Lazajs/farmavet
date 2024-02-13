@@ -3,8 +3,8 @@
 
 import Link from 'next/link'
 import { Icons } from '@/components/Icons'
-import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const { Cart, CloseBurger, Burger } = Icons
 
@@ -17,6 +17,11 @@ export default function Navbar ({ Mobile, Desktop } : Props) {
   const allowedSearchPaths = ['/', '/products']
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    setIsOpen(false)
+  }, [searchParams])
 
   return (
     <>

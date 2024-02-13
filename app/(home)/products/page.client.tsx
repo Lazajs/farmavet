@@ -7,7 +7,7 @@ import { useState, useMemo, useEffect } from 'react'
 import useNearScreen from '@/hooks/useNearScreen'
 import Spinner from '@/components/Spinner'
 import MobileSearch from '@/components/Search/MobileSearch'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const Product = dynamic(() => import('@/components/Product'), { ssr: false }) // Avoid prerender
 
@@ -22,16 +22,20 @@ export default function Page ({ products, prevParams }: Props) {
   const { element, isIntersecting } = useNearScreen()
   const [isAll, setIsAll] = useState(false)
   const router = useRouter()
+  const fromQueryHook = useSearchParams()
   const queryParams = useMemo(() => {
     const params = new URLSearchParams(prevParams).toString()
     const query = params ? `&${params}` : ''
     return query
-  }, [prevParams])
-
+  }, [prevParams, fromQueryHook])
+  console.log(isIntersecting)
   useEffect(() => {
     const updateState = async () => {
+      console.log('asdf')
       const response = await fetch(`/api/products/search?${queryParams}`)
       const data = await response.json()
+      if (data.length === 0) setIsAll(true)
+      else setIsAll(false)
       setCurrentProducts(data)
     }
 
@@ -43,6 +47,7 @@ export default function Page ({ products, prevParams }: Props) {
     const query = params ? `&${params}` : ''
 
     const updateState = async () => {
+      console.log('asdfasdf')
       const response = await fetch(`/api/products/search?offset=${offset}${query}`)
       const data = await response.json()
       setCurrentProducts((prod) => {
@@ -56,12 +61,16 @@ export default function Page ({ products, prevParams }: Props) {
 
   const clearFilters = () => {
     router.push('/products')
+    // setIsAll(false)
+    setCurrentProducts(products)
   }
   return (
     <main className="max-w-[1440px] m-auto mt-10 p-4 lg:p-[120px] min-h-screen pt-0 lg:pt-0">
+      <div>
       <h1 className={`${dmSerif.className} text-xl2 font-normal text-textBlack mb-10 md:mt-20 hidden md:block text-center md:text-left md:text-xl3`}>Productos</h1>
 
-      {queryParams && <button className='rounded-xl bg-primary text-base text-white font-bold p-2 mb-10' onClick={clearFilters}> ❌ Quitar filtros</button>}
+      {queryParams && <button className='rounded-xl bg-primary text-xs text-white font-bold p-2 mb-5' onClick={clearFilters}> ❌ Quitar filtros</button>}
+      </div>
 
       <MobileSearch />
       <section className={`flex flex-col md:flex-row md:flex-wrap relative ${!isAll && 'min-h-screen'} md:gap-[22px] gap-2 w-full items-center`}>
@@ -71,14 +80,9 @@ export default function Page ({ products, prevParams }: Props) {
             })
           }
 
-        {
-          !isAll &&
-            (
-            <div ref={element} className='relative bottom-0 pt-20 w-full h-10 rounded-3xl'>
+            <div ref={element} className={`relative bottom-0 pt-20 w-full h-10 rounded-3xl ${isAll ? 'hidden' : ''}`}>
              <Spinner center={true} />
             </div>
-            )
-        }
 
       </section>
       {

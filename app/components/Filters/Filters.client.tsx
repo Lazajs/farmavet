@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import MobileSearch from '@/components/Search/MobileSearch'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 
@@ -24,6 +24,11 @@ export default function ClientFilters ({ types, providers }: {types: Record<stri
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const router = useRouter()
+  const queryParams = useMemo(() => {
+    const params = new URLSearchParams(searchParams).toString()
+    const query = params ? `&${params}` : ''
+    return query
+  }, [searchParams])
 
   const handleClick = (option: Options) => {
     setOption(option)
@@ -59,7 +64,7 @@ export default function ClientFilters ({ types, providers }: {types: Record<stri
           <MobileSearch />
         </div>
           : ''}
-      <div className='w-full md:bg-primary bg-white absolute left-0 md:top-[80px] top-[270px] shadow-common z-40'>
+      <div className={`w-full md:bg-primary bg-white absolute left-0 md:top-[80px] ${queryParams ? 'top-[320px]' : 'top-[270px]'} shadow-common z-40`}>
         <span className='bg-softWhite md:max-w-[1440px] md:bg-primary border md:w-full md:rounded-none md:h-[44px] md:block md:border-none md:text-white md:text-base w-[360px] h-[60px] m-auto md:pl-[120px] flex rounded-3xl text-sm font-bold'>
           <button className={`${option === Options.PROVIDERS && 'bg-white md:bg-primary'} md:mr-[60px] rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.PROVIDERS)} onClick={() => handleClick(Options.PROVIDERS)}>proveedores <ArrowDown /></button>
           <button className={`${option === Options.TYPES && 'bg-white md:bg-primary'} rounded-3xl md:rounded-none flex-1 uppercase md:lowercase md:first-letter:uppercase basis-1/2`} onMouseEnter={() => setOption(Options.TYPES)} onClick={() => handleClick(Options.TYPES)}>tipo <ArrowDown /></button>
