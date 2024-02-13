@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { dmSerif } from '@/utils/fonts'
 import ContactForm from '@/components/ContactForm'
 import Link from 'next/link'
+import Whatsapp from '@/components/Whatsapp'
 
 export default function Home () {
   return (
@@ -61,6 +62,8 @@ export default function Home () {
         <Image src={'https://res.cloudinary.com/dfdxnfa6j/image/upload/v1704709849/page/cmpdog_dxq2ef.png'} width={500} height={500} alt='Dog' className='w-full max-w-[500px] lg:max-w-[500px] object-contain mx-auto mt-10 lg:mt-0'/>
       </div>
     </section>
+
+    <Whatsapp />
     </main>
   )
 }

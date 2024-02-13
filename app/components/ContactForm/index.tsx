@@ -21,6 +21,7 @@ export default function ContactForm () {
       {
         state && errors[0] === '' ? <p className='text-primary font-bold text-2xl text-center'>Gracias por contactarte!</p> : <Submit />
       }
+      <p className='text-center text-xs font-bold text-textGray md:text-base'>*Nuestro horario de atención es de 8:00 hs a 20:00 hs</p>
     </form>
   )
 }
