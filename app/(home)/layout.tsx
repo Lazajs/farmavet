@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import SearchServer from '@/components/Search/Search'
 import Filters from '@/components/Filters'
 import dynamic from 'next/dynamic'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const CartProvider = dynamic(() => import('./cart/components/CartProvider'), { ssr: false })
 
@@ -31,6 +32,7 @@ export default async function RootLayout ({
           </CartProvider>
         <Footer />
       </body>
+      <GoogleAnalytics gaId='G-ZD1JR28DLN' />
     </html>
   )
 }
